@@ -1,0 +1,2 @@
+echo -e "CSE321 Operating Systems 13\nCSE423 Computer Graphics 12\nCSE461 Robotics 1\nPSY101 Psychology 3" > course.txt
+grep -c "CSE" course.txt

@@ -1,0 +1,72 @@
+; Write a procedure to identify calculate x^n.
+
+.MODEL SMALL
+
+PRINT_CHAR MACRO X
+	MOV DX, X
+	MOV AH, 2
+	INT 21H
+ENDM
+
+PRINT_NUM MACRO X
+	MOV AX, X
+	MOV BX, 10
+	MOV CX, 0
+	ASCII_CONVERT:
+		MOV DX, 0
+		DIV BX
+		ADD DX, 30H
+		PUSH DX
+		INC CX
+		CMP AX, 0
+		JE	PRINT
+		JMP ASCII_CONVERT
+	PRINT:
+		POP DX
+		PRINT_CHAR DX
+	LOOP PRINT
+ENDM
+
+.STACK 100H
+.DATA
+
+X	DW 2
+N	DW 8
+RES	DW ?
+
+.CODE
+
+POWER_N PROC
+	
+	;calculate: [limit upto data word]
+	
+	MOV AX, 1
+	MOV BX, X
+	MOV CX, N
+	L1:
+		MUL BX
+	LOOP L1:
+	MOV RES, AX
+		   
+	PRINT_NUM RES
+    	
+POWER_N ENDP
+JMP EX_CODE
+
+MAIN PROC
+
+; initialize DS
+MOV AX,@DATA
+MOV DS,AX
+ 
+; code here
+
+CALL POWER_N
+EX_CODE:
+
+;exit to DOS              
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+    END MAIN

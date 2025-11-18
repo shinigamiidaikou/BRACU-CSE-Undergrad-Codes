@@ -1,0 +1,5 @@
+for i in {0..20}
+do
+echo $i >> nums.txt
+done
+sed -n '5,17p' nums.txt

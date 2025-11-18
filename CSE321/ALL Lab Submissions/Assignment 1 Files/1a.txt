@@ -1,0 +1,20 @@
+touch 22101621_1.txt 22101621_2.txt 22101621_3.txt 22101621_4.txt
+mkdir ShafinAhmed1 ShafinAhmed2
+
+mv 22101621_1.txt 22101621_2.txt 22101621_3.txt ShafinAhmed1/
+
+cp ShafinAhmed1/22101621_1.txt ShafinAhmed1/22101621_2.txt ShafinAhmed2/
+
+mkdir ShafinAhmed3
+
+cp -r ShafinAhmed1 ShafinAhmed3/
+
+cd ShafinAhmed3/
+ls -aRl
+chmod -R g=rx,o=rx *
+
+cd ..
+ls
+
+sudo mv ShafinAhmed3 /
+rm -r ShafinAhmed1 ShafinAhmed2 22101621_4.txt

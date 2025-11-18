@@ -1,0 +1,14 @@
+Selection Sort Times:
+For 5000   Elements: 22.694631 ms
+For 50000  Elements: 811.496187 ms
+For 500000 Elements: 76265.367036 ms
+
+Bubble Sort Times:
+For 5000   Elements: 43.237403 ms
+For 50000  Elements: 3512.213448 ms
+For 500000 Elements: 349447.409301 ms
+
+Insertion Sort Times:
+For 5000   Elements: 24.212169 ms
+For 50000  Elements: 865.791339 ms
+For 500000 Elements: 25193.60422 ms

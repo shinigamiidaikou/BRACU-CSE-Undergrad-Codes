@@ -1,0 +1,29 @@
+i = 4
+ID = 22101621
+
+for i in range(1, i+1):
+	try:
+		file0 = open(f"input{i}.txt", "x")
+		file1 = open(f"task{i}_{ID}.py", "x")
+	except FileExistsError:
+		continue
+	file0.close()
+	file1.close()
+
+
+"""
+===============================================
+--> input output template code:
+===============================================
+
+in_file = open("input1.txt")
+t = int(in_file.readline())
+numList = [int(_) for _ in in_file.readline().split()]
+in_file.close()
+
+output = taskFunction(arr)
+
+out_file = open("output1.txt", "w")
+out_file.write(str(output))
+out_file.close()
+"""

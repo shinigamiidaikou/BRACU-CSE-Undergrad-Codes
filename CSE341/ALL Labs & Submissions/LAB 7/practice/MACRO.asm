@@ -1,0 +1,34 @@
+.MODEL SMALL
+
+POWER MACRO X, Y
+	MOV AX, 1
+	MOV CX, Y
+	MOV DX, X
+	L1:
+		MUL DL
+	LOOP L1
+ENDM
+
+.STACK 100H
+.DATA
+
+.CODE
+MAIN PROC
+
+; initialize DS
+MOV AX,@DATA
+MOV DS,AX
+ 
+; code here
+
+	MOV DX, 5
+	MOV CX, 3
+	POWER DX, CX
+		
+
+;exit to DOS              
+MOV AX,4C00H
+INT 21H
+
+MAIN ENDP
+    END MAIN

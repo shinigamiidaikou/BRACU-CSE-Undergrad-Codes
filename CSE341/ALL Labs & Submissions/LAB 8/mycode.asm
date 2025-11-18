@@ -1,0 +1,31 @@
+.MODEL SMALL
+
+.STACK 100H
+.DATA
+
+.CODE
+MAIN PROC
+
+; initialize DS
+MOV AX,300H
+MOV DS,AX
+ 
+; code here
+
+MOV CX, 16
+MOV AL, 41H
+
+MOV BX, 0
+
+MEM_STO:
+    MOV [BX], AL
+    INC AL
+    INC BX
+LOOP MEM_STO			
+
+;exit to DOS              
+MOV AX,4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN

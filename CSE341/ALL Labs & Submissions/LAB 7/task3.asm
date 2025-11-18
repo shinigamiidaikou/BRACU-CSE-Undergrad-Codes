@@ -1,0 +1,44 @@
+; Write a macro to reverse a string.
+
+.MODEL SMALL
+
+PRINT_CHAR MACRO X
+	MOV DL, X
+	MOV AH, 2
+	INT 21H
+ENDM
+
+REVERSE_PRINT MACRO STR, LEN
+	MOV SI, LEN
+	DEC SI
+	MOV CX, LEN
+	L1:
+		PRINT_CHAR STR[SI]
+		DEC SI
+		LOOP L1
+ENDM
+
+.STACK 100H
+.DATA
+
+STR1	DB "TEST STRING!$"
+LEN1		DW 12
+
+.CODE
+
+MAIN PROC
+
+; initialize DS
+MOV AX,@DATA
+MOV DS,AX
+ 
+; code here
+
+REVERSE_PRINT STR1, LEN1
+
+;exit to DOS              
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+    END MAIN

@@ -1,0 +1,95 @@
+.MODEL SMALL
+ 
+.STACK 100H
+
+.DATA
+
+; declare variables here
+A DB "Please enter a string: $"
+B DB "Palindrome check: Yes$"
+C DB "Palindrome check: No$"
+
+.CODE
+MAIN PROC
+
+; initialize DS
+
+MOV AX,@DATA
+MOV DS,AX
+ 
+; enter your code here
+LEA DX, A
+MOV AH, 9
+INT 21H
+
+MOV AH, 1
+INT 21H
+
+MOV BL, AL
+
+INT 21H
+
+MOV BH, AL
+
+INT 21H
+
+MOV CL, AL
+
+INT 21H
+
+CMP AL, CL
+JNE NOT_PAL1
+
+INT 21H
+
+CMP AL, BH
+JNE NOT_PAL2
+
+INT 21H
+
+CMP AL, BL
+JNE NOT_PAL
+JE PAL
+
+NOT_PAL1:
+INT 21H
+INT 21H
+JMP NOT_PAL
+
+NOT_PAL2:
+INT 21H
+JMP NOT_PAL
+
+NOT_PAL:
+
+MOV AH, 2
+MOV DL, 0DH
+INT 21H
+MOV DL, 0AH
+INT 21H
+
+LEA DX, C
+MOV AH, 9
+INT 21H
+
+JMP EXIT
+
+PAL:
+MOV AH, 2
+MOV DL, 0DH
+INT 21H
+MOV DL, 0AH
+INT 21H
+
+LEA DX, B
+MOV AH, 9
+INT 21H
+
+EXIT:
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN

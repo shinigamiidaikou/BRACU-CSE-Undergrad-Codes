@@ -1,0 +1,10 @@
+9 // Total Elements
+9 10 11 10 6 7 9 8 15 2 10
+7 // Total queries
+6
+5
+3
+9
+2
+7
+8

@@ -1,0 +1,75 @@
+; Write a procedure to identify the maximum
+; between 2 numbers and use that procedure to
+; figure out the maximum between n amount of numbers
+
+.MODEL SMALL
+
+PRINT_CHAR MACRO X
+	MOV DX, X
+	MOV AH, 2
+	INT 21H
+ENDM
+
+PRINT_NUM MACRO X
+	MOV AX, X
+	MOV BX, 10
+	MOV CX, 0
+	ASCII_CONVERT:
+		MOV DX, 0
+		DIV BX
+		ADD DX, 30H
+		PUSH DX
+		INC CX
+		CMP AX, 0
+		JE	PRINT
+		JMP ASCII_CONVERT
+	PRINT:
+		POP DX
+		PRINT_CHAR DX
+	LOOP PRINT
+ENDM 
+
+.STACK 100H
+.DATA
+
+NUM_ARR DW -234,212,1234,-245,32456,23 ; SIGNED DECIMAL NUM ARRAY
+LEN_ARR	DW 6
+
+.CODE
+
+MAX PROC
+	
+	CMP	AX, DX
+	JLE	CONTINUE
+	MOV DX, AX
+    CONTINUE:
+    	
+MAX ENDP
+JMP EX_PROC
+
+MAIN PROC
+
+; initialize DS
+MOV AX,@DATA
+MOV DS,AX
+ 
+; code here
+
+	MOV SI, 0
+	MOV CX, LEN_ARR
+	MOV DX, -32768 ; UNSIGNED LOWEST DECIMAL DATA WORD LIMIT
+	L1:
+		MOV AX, NUM_ARR[SI]
+		CALL MAX
+		EX_PROC:
+		ADD SI, 2
+	LOOP L1
+	
+	PRINT_NUM DX
+
+;exit to DOS              
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+    END MAIN

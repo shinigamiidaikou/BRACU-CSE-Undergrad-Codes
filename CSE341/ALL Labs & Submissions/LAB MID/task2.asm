@@ -1,0 +1,75 @@
+.MODEL SMALL
+ 
+.STACK 100H
+
+.DATA
+
+; declare variables here
+
+.CODE
+MAIN PROC
+
+; initialize DS
+F DB "    $"
+TR DB "   $"
+T DB "  $"
+O DB " $"
+
+MOV AX,@DATA
+MOV DS,AX
+ 
+; enter your code here
+LEA DX, F
+MOV AH, 9
+INT 21H
+
+MOV AH, 1
+INT 21H
+
+MOV AH, 2
+MOV DL, 0DH
+INT 21H
+
+LEA DX, TR
+MOV AH, 9
+INT 21H
+
+MOV AH, 1
+INT 21H
+
+MOV AH, 2
+MOV DL, 0DH
+INT 21H
+
+LEA DX, T
+MOV AH, 9
+INT 21H
+
+MOV AH, 1
+INT 21H
+
+MOV AH, 2
+MOV DL, 0DH
+INT 21H
+
+LEA DX, O
+MOV AH, 9
+INT 21H
+
+MOV AH, 1
+INT 21H
+
+MOV AH, 2
+MOV DL, 0DH
+INT 21H
+
+MOV AH, 1
+INT 21H
+
+;exit to DOS
+               
+MOV AX,4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
