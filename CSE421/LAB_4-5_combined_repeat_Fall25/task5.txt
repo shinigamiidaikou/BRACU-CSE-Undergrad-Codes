@@ -1,0 +1,68 @@
+## R1 -> CLI
+
+en
+conf t
+ip route 0.0.0.0 0.0.0.0 s0/0/1
+router rip
+version 2
+no auto-summary
+network 192.168.1.0
+network 192.168.2.0
+passive-interface g0/0
+default-information originate
+end
+copy run start
+<Enter>
+
+## R2 -> CLI
+
+en
+conf t
+router rip
+version 2
+no auto-summary
+network 192.168.2.0
+network 192.168.3.0
+network 192.168.4.0
+passive-interface g0/0
+end
+copy run start
+<Enter>
+
+## R3 -> CLI
+
+en
+conf t
+router rip
+version 2
+no auto-summary
+network 192.168.4.0
+network 192.168.5.0
+passive-interface g0/0
+end
+copy run start
+<Enter>
+
+## Repeated Routing Table display command
+
+show ip route
+
+## Verifications
+
+# PC1 -> Desktop -> CMD
+
+ping 192.168.3.10
+ping 192.168.5.10
+ping 64.100.0.10
+
+# PC2 -> Desktop -> CMD
+
+ping 192.168.1.10
+ping 192.168.5.10
+ping 64.100.0.10
+
+# PC3 -> Desktop -> CMD
+
+ping 192.168.1.10
+ping 192.168.3.10
+ping 64.100.0.10

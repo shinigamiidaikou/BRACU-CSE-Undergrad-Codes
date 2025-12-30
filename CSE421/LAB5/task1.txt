@@ -1,0 +1,35 @@
+# R1 CLI
+en
+conf t
+ip route 172.31.0.0 255.255.255.0 172.31.1.193
+ip route 172.31.1.128 255.255.255.192 172.31.1.193
+ip route 172.31.1.196 255.255.255.252 172.31.1.193
+
+# R2 CLI
+en
+conf t
+ip route 172.31.1.0 255.255.255.128 s0/0/0
+ip route 172.31.1.128 255.255.255.192 s0/0/1
+
+# R3 CLI
+en
+conf t
+ip route 0.0.0.0 0.0.0.0 s0/0/01
+
+# Common commands in CLI for verifying routing tables
+show ip route
+show ip route static
+show ip int brief
+show run
+
+# PC1 CMD
+ping 172.31.0.254
+ping 172.31.1.190
+
+# PC2 CMD
+ping 172.31.1.126
+ping 172.31.1.190
+
+# PC3 CMD
+ping 172.31.1.126
+ping 172.31.0.254

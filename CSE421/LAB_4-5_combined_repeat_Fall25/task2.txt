@@ -1,0 +1,19 @@
+## DHCP Server -> Services -> DHCP
+
+# Pool Name			-> R1_LAN
+# Default Gateway	-> 192.168.50.1
+# DNS Server		-> 192.168.60.254
+# Start IP			-> 192.168.50.11
+# Subnet Mask		-> 255.255.255.0
+
+
+# R1 -> CLI
+
+en
+conf t
+int g0/0
+ip helper-address 192.168.60.253
+exit
+exit
+
+## PC1 -> Dekstop -> IP Config -> DHCP

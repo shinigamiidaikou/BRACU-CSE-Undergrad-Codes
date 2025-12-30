@@ -1,0 +1,67 @@
+## IPV4
+
+
+# Edge Router CLI
+en
+conf t
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+ip route 0.0.0.0 0.0.0.0 s0/0/1 5
+exit
+
+# PC-A -> Desktop -> CMD
+tracert 198.0.0.10
+
+# Edge Router CLI
+conf t
+int s0/0/0
+shutdown
+exit
+exit
+
+# PC-A -> Desktop -> CMD
+tracert 198.0.0.10
+
+# Edge Router CLI
+conf t
+int s0/0/0
+no shutdown
+exit
+exit
+
+# PC-A -> Desktop -> CMD
+tracert 198.0.0.10
+
+
+## IPV6
+
+
+# Edge Router CLI
+conf t
+ipv6 route ::/0 2001:DB8:A:2::1 5
+exit
+
+# Edge Router CLI
+conf t
+int s0/0/0
+shut
+exit
+exit
+
+# PC-A -> Desktop -> CMD
+tracert 2001:DB8:F:F::10
+
+# Edge Router CLI
+conf t
+int s0/0/0
+no shut
+exit
+exit
+
+# PC-A -> Desktop -> CMD
+tracert 2001:DB8:F:F::1
+
+
+## Repeated commands to check routes & running config
+
+show ip route
+show run

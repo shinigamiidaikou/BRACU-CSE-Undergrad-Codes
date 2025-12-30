@@ -1,0 +1,51 @@
+# Edge Router CLI
+
+en
+
+# IPV4
+
+conf t
+ip route 0.0.0.0 0.0.0.0 s0/0/0
+exit
+show ip route
+traceroute 198.0.0.10
+conf t
+ip route 0.0.0.0 0.0.0.0 s0/0/1 5
+exit
+show run
+show ip route
+conf t
+int s0/0/0
+shutdown
+exit
+exit
+traceroute 198.0.0.10
+show ip route
+conf t
+int s0/0/0
+no shutdown
+exit
+exit
+traceroute 198.0.0.10
+show ip route
+
+# IPV6
+
+conf t
+ipv6 route ::/0 2001:DB8:A:2::1 5
+exit
+show run
+conf t
+int s0/0/0
+shut
+exit
+exit
+traceroute 2001:DB8:F:F::10
+show ip route
+conf t
+int s0/0/0
+no shut
+exit
+exit
+traceroute 2001:DB8:F:F::10
+show ip route
